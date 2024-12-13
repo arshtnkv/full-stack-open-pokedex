@@ -9,6 +9,9 @@ jobs:
   hello_word_job:
     runs-on: ubuntu-20.04
     steps:
-      - name: Say hello
-        run: |
-          echo "Hello Word!"
+      - name: Say Hello
+        run: echo "Hello World!"
+      - name: Print Date
+        run: date
+      - name: List Directory Contents
+        run: ls -l
