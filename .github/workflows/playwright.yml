@@ -25,12 +25,6 @@ jobs:
       working-directory: ./e2e-tests
       run: npm ci
 
-    - name: Start project
-      run: npm start &
-      
-    - name: Wait for the server to start
-      run: npx wait-on http-get://localhost:8080
-
     - name: Run Playwright tests
       working-directory: ./e2e-tests
       run: npx playwright test
