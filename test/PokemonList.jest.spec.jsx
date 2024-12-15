@@ -4,6 +4,21 @@ import { BrowserRouter } from 'react-router-dom'
 import '@testing-library/jest-dom'
 import PokemonList from '../src/PokemonList'
 
+beforeAll(() => {
+  jest.spyOn(console, 'warn').mockImplementation((message) => {
+    if (message && message.includes('React Router Future Flag Warning')) {
+      return
+    }
+    console.warn(message)
+  })
+  jest.spyOn(console, 'log').mockImplementation(() => {})
+})
+
+afterAll(() => {
+  console.warn.mockRestore()
+  console.log.mockRestore()
+})
+
 const pokemonList = [
   {
     url: 'https://pokeapi.co/api/v2/pokemon/1/',

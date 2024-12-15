@@ -1,13 +1,28 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
 import axiosMock from 'axios'
-import { act } from 'react-dom/test-utils'
+import { act } from 'react'
 import '@testing-library/jest-dom'
 import PokemonPage from '../src/PokemonPage'
 
 import { MemoryRouter } from 'react-router-dom'
 
 jest.mock('axios')
+
+beforeAll(() => {
+  jest.spyOn(console, 'warn').mockImplementation((message) => {
+    if (message && message.includes('React Router Future Flag Warning')) {
+      return
+    }
+    console.warn(message)
+  })
+  jest.spyOn(console, 'log').mockImplementation(() => {})
+})
+
+afterAll(() => {
+  console.warn.mockRestore()
+  console.log.mockRestore()
+})
 
 const pokemonList = {
   id: 133,
